@@ -1,10 +1,10 @@
 {
-  "name": "__PACKAGE_NAME__",
+  "name": "@umm/cafu_timer",
   "version": "1.0.0",
-  "description": "__DESCRIPTION__",
-  "homepage": "https://__REPOSITORY_HOST__/__REPOSITORY_GROUP__/__REPOSITORY_NAME__",
+  "description": "",
+  "homepage": "https://github.com/umm-projects/cafu_timer",
   "bugs": {
-    "url": "https://__REPOSITORY_HOST__/__REPOSITORY_GROUP__/__REPOSITORY_NAME__/issues"
+    "url": "https://github.com/umm-projects/cafu_timer/issues"
   },
   "scripts": {
     "umm:init": "umm-init",
@@ -14,11 +14,11 @@
     "postinstall": "npm run --silent umm:module:install",
     "postuninstall": "npm run --silent umm:module:uninstall"
   },
-  "author": "__AUTHOR_NAME__",
-  "license": "__LICENSE__",
+  "author": "Tetsuya Mori",
+  "license": "MIT",
   "repository": {
-    "type": "__REPOSITORY_TYPE__",
-    "url": "__REPOSITORY_USER__@__REPOSITORY_HOST__:__REPOSITORY_GROUP__/__REPOSITORY_NAME__"
+    "type": "git",
+    "url": "git@github.com:umm-projects/cafu_timer"
   },
   "files": [
     "Assets"
