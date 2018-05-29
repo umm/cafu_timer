@@ -24,7 +24,10 @@
     "Assets"
   ],
   "dependencies": {
-    "@umm/scripts": "umm-projects/scripts#^1.0.0"
+    "@umm/cafu_core": "umm-projects/cafu_core#^2.0.0",
+    "@umm/event_activator": "umm-projects/event_activator#^1.0.0",
+    "@umm/scripts": "umm-projects/scripts#^1.0.0",
+    "@umm/unity_module_stopwatch": "umm-projects/unity_module_stopwatch#^1.0.0"
   },
   "devDependencies": {}
 }
