@@ -16,7 +16,18 @@ yarn add "umm-projects/cafu_timer#^1.0.0"
 
 ## Usage
 
-FIXME
+Implement your presenter.
+
+```csharp
+
+public class MyPresenter : ITimerPresenter
+{
+    public ITimerUseCase TimerUseCase { get; private set; }
+}
+```
+
+Attach TimerGauge on your image which fills image
+Now you created your timer gauge!
 
 ## License
 
