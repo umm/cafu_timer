@@ -4,49 +4,51 @@ using ExtraUniRx;
 using NUnit.Framework;
 using UniRx;
 
-namespace CAFU.Timer.Domain.UseCase {
-
-    public class TimerUseCaseTest {
-
-        // ライブラリ使いたいが、めんどいので自作Spyする
-        class TimerUseCaseSpy : TimerUseCase {
-
-            public class SpyFactory : DefaultUseCaseFactory<TimerUseCaseSpy> {
-
+namespace CAFU.Timer.Domain.UseCase
+{
+    public class TimerUseCaseTest
+    {
+        class TimerUseCaseSpy : TimerUseCase
+        {
+            public class SpyFactory : DefaultUseCaseFactory<TimerUseCaseSpy>
+            {
                 private ISubject<float> frameDiffTime;
 
-                protected override void Initialize(TimerUseCaseSpy instance) {
+                protected override void Initialize(TimerUseCaseSpy instance)
+                {
                     base.Initialize(instance);
 
                     instance.Initialize(this.frameDiffTime);
                 }
 
-                public TimerUseCaseSpy Create(ISubject<float> frameDiffTime) {
+                public TimerUseCaseSpy Create(ISubject<float> frameDiffTime)
+                {
                     this.frameDiffTime = frameDiffTime;
                     return base.Create();
                 }
-
             }
 
             public ISubject<float> SpyFrameDiffTimeSubject;
 
-            protected void Initialize(ISubject<float> frameDiffTime) {
+            protected void Initialize(ISubject<float> frameDiffTime)
+            {
                 base.Initialize();
                 this.SpyFrameDiffTimeSubject = frameDiffTime;
                 this.StopWatch = new StopWatch(frameDiffTime);
             }
-
         }
 
         private TimerUseCaseSpy usecase;
 
         [SetUp]
-        public void SetUp() {
+        public void SetUp()
+        {
             this.usecase = new TimerUseCaseSpy.SpyFactory().Create(new Subject<float>());
         }
 
         [Test]
-        public void StartedAsObservableTest() {
+        public void StartedAsObservableTest()
+        {
             var observer = new TestObserver<Unit>();
 
             this.usecase.StartedAsObservable.Subscribe(observer);
@@ -58,7 +60,8 @@ namespace CAFU.Timer.Domain.UseCase {
         }
 
         [Test]
-        public void FinishedAsObservableTest() {
+        public void FinishedAsObservableTest()
+        {
             {
                 var observer = new TestObserver<Unit>();
                 this.usecase.FinishedAsObservable.Subscribe(observer);
@@ -84,7 +87,8 @@ namespace CAFU.Timer.Domain.UseCase {
         }
 
         [Test]
-        public void RemainTimeElapsedTimeAsObservableTest() {
+        public void RemainTimeElapsedTimeAsObservableTest()
+        {
             // start
             {
                 var remainTimeObserver = new TestObserver<float>();
@@ -137,7 +141,8 @@ namespace CAFU.Timer.Domain.UseCase {
         }
 
         [Test]
-        public void StartStopTest() {
+        public void StartStopTest()
+        {
             // start
             var elapsedTimeObserver = new TestObserver<float>();
             this.usecase.ElapsedTimeAsObservable.Subscribe(elapsedTimeObserver);
@@ -191,7 +196,8 @@ namespace CAFU.Timer.Domain.UseCase {
         }
 
         [Test]
-        public void ResumePauseTest() {
+        public void ResumePauseTest()
+        {
             // start
             var elapsedTimeObserver = new TestObserver<float>();
             this.usecase.ElapsedTimeAsObservable.Subscribe(elapsedTimeObserver);
@@ -232,10 +238,11 @@ namespace CAFU.Timer.Domain.UseCase {
         }
 
         [Test]
-        public void IsPlayingTest() {
+        public void IsPlayingTest()
+        {
             var observer = new TestObserver<bool>();
             this.usecase.IsPlayingAsObservable.Subscribe(observer);
-            
+
             this.usecase.Start(1f);
             Assert.IsTrue(this.usecase.IsPlaying);
             Assert.AreEqual(1, observer.OnNextCount);
@@ -246,7 +253,5 @@ namespace CAFU.Timer.Domain.UseCase {
             Assert.AreEqual(2, observer.OnNextCount);
             Assert.IsFalse(observer.OnNextValues[1]);
         }
-
     }
-
 }

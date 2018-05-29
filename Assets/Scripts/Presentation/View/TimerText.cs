@@ -6,14 +6,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityModule;
 
-namespace CAFU.Timer.Presentation.View {
-
+namespace CAFU.Timer.Presentation.View
+{
     [RequireComponent(typeof(Text))]
-    public class TimerText : UIBehaviour, IView {
-
+    public class TimerText : UIBehaviour, IView
+    {
         public string Format = "のこりじかん: {0} びょう";
 
-        protected override void Start() {
+        protected override void Start()
+        {
             this.RegisterEventActivationHandler();
 
             this.GetPresenter<ITimerPresenter>().GetRemainTimeAsObservable()
@@ -22,10 +23,9 @@ namespace CAFU.Timer.Presentation.View {
                 .AddTo(this);
         }
 
-        private void Render(int time) {
+        private void Render(int time)
+        {
             this.GetComponent<Text>().text = string.Format(this.Format, time);
         }
-
     }
-
 }
