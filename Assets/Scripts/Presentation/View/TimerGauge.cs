@@ -6,12 +6,13 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using UnityModule;
 
-namespace CAFU.Timer.Presentation.View {
-
+namespace CAFU.Timer.Presentation.View
+{
     [RequireComponent(typeof(Image))]
-    public class TimerGauge : UIBehaviour, IView {
-
-        protected override void Start() {
+    public class TimerGauge : UIBehaviour, IView
+    {
+        protected override void Start()
+        {
             this.RegisterEventActivationHandler();
 
             var presenter = this.GetPresenter<ITimerPresenter>();
@@ -21,11 +22,10 @@ namespace CAFU.Timer.Presentation.View {
                 .AddTo(this);
         }
 
-        private void Render(float time, float finishTime) {
+        private void Render(float time, float finishTime)
+        {
             var ratio = finishTime > 0 ? time / finishTime : 1f;
             this.GetComponent<Image>().fillAmount = ratio;
         }
-
     }
-
 }

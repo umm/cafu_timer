@@ -1,13 +1,12 @@
 ﻿using CAFU.Core.Domain.UseCase;
 using CAFU.Timer.Domain.Model;
-using ExtraTime;
 using UniRx;
-using UnityEditor;
+using UnityModule;
 
-namespace CAFU.Timer.Domain.UseCase {
-
-    public interface ITimerUseCase : IUseCase {
-
+namespace CAFU.Timer.Domain.UseCase
+{
+    public interface ITimerUseCase : IUseCase
+    {
         /// <summary>
         /// Start Timer
         /// </summary>
@@ -63,18 +62,17 @@ namespace CAFU.Timer.Domain.UseCase {
         /// Timer is Playing or not
         /// </summary>
         bool IsPlaying { get; }
-
     }
 
-    public class TimerUseCase : ITimerUseCase {
-
-        public class Factory : DefaultUseCaseFactory<TimerUseCase> {
-
-            protected override void Initialize(TimerUseCase instance) {
+    public class TimerUseCase : ITimerUseCase
+    {
+        public class Factory : DefaultUseCaseFactory<TimerUseCase>
+        {
+            protected override void Initialize(TimerUseCase instance)
+            {
                 base.Initialize(instance);
                 instance.Initialize();
             }
-
         }
 
         public IObservable<Unit> StartedAsObservable => this.StartedSubject;
@@ -101,7 +99,8 @@ namespace CAFU.Timer.Domain.UseCase {
 
         private ISubject<Unit> StartedSubject { get; set; }
 
-        public void Start(float timeSeconds) {
+        public void Start(float timeSeconds)
+        {
             this.Stop();
             this.Model.FinishTime = timeSeconds;
 
@@ -109,42 +108,47 @@ namespace CAFU.Timer.Domain.UseCase {
             this.StartedSubject.OnNext(Unit.Default);
         }
 
-        public void Stop() {
+        public void Stop()
+        {
             this.StopWatch.Stop();
         }
 
-        public void Resume() {
+        public void Resume()
+        {
             this.StopWatch.Resume();
         }
 
-        public void Pause() {
+        public void Pause()
+        {
             this.StopWatch.Pause();
         }
 
-        private IObservable<Unit> GetFinishedAsObservable() {
+        private IObservable<Unit> GetFinishedAsObservable()
+        {
             return this.GetElapsedTimeAsObservable()
                 .Where(time => time >= this.Model.FinishTime)
                 .AsUnitObservable()
                 .First();
         }
 
-        private IObservable<float> GetRemainTimeAsObservable() {
+        private IObservable<float> GetRemainTimeAsObservable()
+        {
             return this.StopWatch.TimeAsObservable
                 .Select(time => this.Model.FinishTime - time)
                 .Select(time => time < 0 ? 0 : time);
         }
 
-        private IObservable<float> GetElapsedTimeAsObservable() {
+        private IObservable<float> GetElapsedTimeAsObservable()
+        {
             return this.StopWatch.TimeAsObservable
                 .Select(time => time > this.Model.FinishTime ? this.Model.FinishTime : time);
         }
 
-        protected virtual void Initialize() {
+        protected virtual void Initialize()
+        {
             this.Model = new TimerModel();
             this.StartedSubject = new Subject<Unit>();
             this.StopWatch = new StopWatch();
         }
-
     }
-
 }
