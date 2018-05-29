@@ -7,6 +7,8 @@
 ## Requirement
 
 - cafu\_core
+- event\_activator
+- unity\_module\_stopwatch
 
 ## Install
 
