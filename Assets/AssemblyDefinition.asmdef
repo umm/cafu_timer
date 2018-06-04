@@ -1,0 +1,13 @@
+{
+    "name": "umm@cafu_timer",
+    "references": [
+        "umm@cafu_core",
+        "umm@event_activator",
+        "umm@stopwatch",
+        "umm@unirx"
+    ],
+    "optionalUnityReferences": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
