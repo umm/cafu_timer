@@ -1,4 +1,5 @@
-﻿using CAFU.Core.Domain.UseCase;
+﻿using System;
+using CAFU.Core.Domain.UseCase;
 using CAFU.Timer.Domain.Model;
 using UniRx;
 using UnityModule;
