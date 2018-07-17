@@ -2,9 +2,9 @@
   "name": "@umm/cafu_timer",
   "version": "1.1.0",
   "description": "",
-  "homepage": "https://github.com/umm-projects/cafu_timer",
+  "homepage": "https://github.com/umm/cafu_timer",
   "bugs": {
-    "url": "https://github.com/umm-projects/cafu_timer/issues"
+    "url": "https://github.com/umm/cafu_timer/issues"
   },
   "scripts": {
     "umm:init": "umm-init",
@@ -18,17 +18,17 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:umm-projects/cafu_timer"
+    "url": "git@github.com:umm/cafu_timer"
   },
   "files": [
     "Assets"
   ],
   "dependencies": {
-    "@umm/cafu_core": "umm-projects/cafu_core#^2.0.0",
-    "@umm/event_activator": "umm-projects/event_activator#^1.0.0",
-    "@umm/scripts": "umm-projects/scripts#^1.0.0",
-    "@umm/stopwatch": "umm-projects/stopwatch#^1.0.0",
-    "@umm/unirx": "umm-projects/unirx#^2.0.0"
+    "@umm/cafu_core": "umm/cafu_core#^2.0.0",
+    "@umm/event_activator": "umm/event_activator#^1.0.0",
+    "@umm/scripts": "umm/scripts#^1.0.0",
+    "@umm/stopwatch": "umm/stopwatch#^1.0.0",
+    "@umm/unirx": "umm/unirx#^2.0.0"
   },
   "devDependencies": {}
 }
