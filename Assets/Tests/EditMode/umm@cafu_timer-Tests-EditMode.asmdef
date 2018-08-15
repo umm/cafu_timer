@@ -1,5 +1,5 @@
 {
-    "name": "Tests.EditMode",
+    "name": "umm@cafu_timer-Tests-EditMode",
     "references": [
         "umm@cafu_timer",
         "umm@cafu_core",
